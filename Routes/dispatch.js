@@ -1,5 +1,7 @@
 'use strict'
+
 const joi = require('joi')
+const onTaskSchedule = require('../lib/onTaskSchedule')
 
 module.exports = {
   method: 'post',
@@ -19,6 +21,10 @@ module.exports = {
     }
   },
   handler: async function (req, h) {
-    return h.response('success')
+    const tasks = req.payload
+    for (let task of tasks) {
+
+    }
+    return h.response(0)
   }
 }
