@@ -1,0 +1,15 @@
+{
+  "extends": "standard",
+  "root": true,
+  "globals": {
+    "Magicweb": true
+  },
+  "rules": {
+      "indent": ["error", 4] ,
+      "no-var": "off",
+      "camelcase": "off",
+      "eqeqeq": 0,
+      "semi": [2, "always"],
+      "one-var":1
+  }
+}
