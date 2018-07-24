@@ -1,7 +1,27 @@
 'use strict';
 
 const joi = require('joi');
+
+const onTaskDone = require('../lib/onTaskDone');
 const onTaskSchedule = require('../lib/onTaskSchedule');
+
+let counter = 0;
+const dispatcher = async function (tasks) {
+    counter++;
+    console.log(`\r\n第${counter}轮分配`);
+    console.log(`task =======> machine`);
+    for (let task of tasks) {
+        const machine = await onTaskSchedule(task);
+        // 注册回调
+        Object.assign(task, { machineId: machine && machine.id });
+        machine && setTimeout(onTaskDone.bind(null, task, machine, tasks, dispatcher), task.times * 1000);
+        console.log(`${task.id}    =======>    ${machine && machine.id}`);
+    }
+    tasks = tasks.filter(task => task.machineId === null);
+    if (tasks.length) {
+        setTimeout(dispatcher.bind(null, tasks), 10 * 1000);
+    }
+};
 
 module.exports = {
     method: 'post',
@@ -22,12 +42,7 @@ module.exports = {
     },
     handler: async function (req, h) {
         const tasks = req.payload;
-        const results = [];
-        for (let task of tasks) {
-            const machine = await onTaskSchedule(task);
-            results.push({taskId: task.id, machine});
-        }
-        console.log(results);
-        return h.response(results);
+        dispatcher(tasks);
+        return h.response('success');
     }
 };
