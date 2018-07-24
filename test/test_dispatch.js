@@ -1,6 +1,6 @@
 'use strict';
 
-const chai = require('chai');
+const {expect} = require('chai');
 
 const rq = require('request-promise');
 
@@ -52,8 +52,8 @@ describe('任务执行', () => {
             json: true
         };
         return rq(options)
-            .then((parsedBody) => {
-                return parsedBody;
+            .then((body) => {
+                expect(body).to.equal('success');
             });
     });
 });
