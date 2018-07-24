@@ -2,7 +2,8 @@
   "extends": "standard",
   "root": true,
   "globals": {
-    "Magicweb": true
+    "describe":true,
+    "it": true
   },
   "rules": {
       "indent": ["error", 4] ,
