@@ -6,7 +6,7 @@ const HapiSwagger = require('hapi-swagger');
 const fs = require('fs');
 const path = require('path');
 
-const server = Hapi.Server({ host: '127.0.0.1', port: 3000, routes: { log: { collect: true } } });
+const server = Hapi.Server({ port: process.env.PORT || 3000, routes: { log: { collect: true } } });
 const basePath = '/api/v1';
 
 async function start () {

@@ -20,6 +20,8 @@ const dispatcher = async function (tasks) {
     tasks = tasks.filter(task => task.machineId === null);
     if (tasks.length) {
         setTimeout(dispatcher.bind(null, tasks), 10 * 1000);
+    } else {
+        console.log(`\r\n全部任务分配结束`);
     }
 };
 
