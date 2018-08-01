@@ -31,6 +31,17 @@ async function start () {
         {
             plugin: HapiSwagger,
             options: swaggerOptions
+        },
+        {
+            plugin: require('good'),
+            options: {
+                reporters: {
+                    myConsoleReporter: [{
+                        module: 'good-console',
+                        args: [{ log: '*', response: '*' }]
+                    }, 'stdout']
+                }
+            }
         }
     ]);
 

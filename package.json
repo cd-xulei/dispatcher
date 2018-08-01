@@ -11,13 +11,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "good": "^8.1.1",
+    "good-console": "^7.1.0",
     "hapi": "^17.5.2",
     "hapi-swagger": "^9.1.1",
     "inert": "^5.1.0",
     "joi": "^13.4.0",
-    "vision": "^5.3.3",
+    "mongoose": "^5.2.5",
     "request": "^2.87.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "vision": "^5.3.3"
   },
   "devDependencies": {
     "chai": "^4.1.2",

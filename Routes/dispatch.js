@@ -13,7 +13,7 @@ const dispatcher = async function (tasks, count) {
         const machine = await onTaskSchedule(task);
         // 注册回调
         Object.assign(task, { machineId: machine && machine.id });
-        machine && setTimeout(onTaskDone.bind(null, task, machine, tasks, dispatcher), task.times * 1000);
+        machine && setTimeout(onTaskDone.bind(null, task, machine), task.times * 1000);
         console.log(`${task.id}    =======>    ${machine && machine.id}`);
     }
     tasks = tasks.filter(task => task.machineId === null);
