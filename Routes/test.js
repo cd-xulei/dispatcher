@@ -27,17 +27,25 @@ const dispatcher = async function (tasks, count) {
 
 module.exports = {
     method: 'post',
-    path: '/dispatch',
+    path: '/a/test/{id}',
     config: {
-        description: '任务调度',
-        tags: ['api', 'task'],
+        description: '测试',
+        tags: ['api', 'test'],
+        plugins: {
+            'hapi-swagger': {
+                deprecated: true
+            }
+        },
         validate: {
+            // params: {
+            //     id: joi.number().required()
+            // },
             payload: joi.array().items(
                 joi.object({
-                    id: joi.number().description('任务 id'),
-                    group: joi.string().description('分组'),
-                    cpus: joi.number().description('所需要 cpu数量'),
-                    times: joi.number().description('执行时间')
+                    id: joi.number(),
+                    group: joi.string(),
+                    cpus: joi.number(),
+                    times: joi.number()
                 })
             )
         }

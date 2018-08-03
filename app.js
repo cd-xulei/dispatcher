@@ -6,7 +6,7 @@ const HapiSwagger = require('hapi-swagger');
 const fs = require('fs');
 const path = require('path');
 
-const server = Hapi.Server({ port: process.env.PORT || 3000, routes: { log: { collect: true } } });
+const server = Hapi.Server({ port: process.env.PORT || 3001, routes: { log: { collect: true } } });
 const basePath = '/api/v1';
 
 async function start () {
@@ -15,14 +15,17 @@ async function start () {
             title: '任务调度',
             version: '1.0.0'
         },
-        basePath: '/api/v1',
         tags: [{
-            name: 'dispatch',
+            name: 'task',
             description: '调度'
         }, {
             name: 'test',
-            description: ' 测试'
-        }]
+            description: '---'
+        }],
+        expanded: 'list',
+        basePath: '/api/v1',
+        grouping: 'tags',
+        lang: 'zh-cn'
     };
 
     await server.register([
