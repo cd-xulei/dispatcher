@@ -1,12 +1,23 @@
 'use strict';
+const fs = require('fs');
+const path = require('path');
+
 const Hapi = require('hapi');
 const Inert = require('inert');
 const Vision = require('vision');
 const HapiSwagger = require('hapi-swagger');
-const fs = require('fs');
-const path = require('path');
 
-const server = Hapi.Server({ port: process.env.PORT || 3001, routes: { log: { collect: true } } });
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/dispacther', {
+    useNewUrlParser: true,
+    keepAlive: true,
+    keepAliveInitialDelay: 300000
+});
+
+const server = Hapi.Server({
+    port: process.env.PORT || 3000,
+    routes: { log: { collect: true } }
+});
 const basePath = '/api/v1';
 
 async function start () {
